@@ -6,6 +6,7 @@ Para criação do ambiente é necessario:
 
 * JDK 8
 * Maven
+* MongoDB
 
 Executar a aplicação localmente
 
