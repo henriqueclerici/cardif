@@ -6,4 +6,5 @@ import com.luiz.cardif.entity.Departamento;
 
 public interface DepartamentoRepository extends MongoRepository<Departamento, String> {
 
+    Departamento findByDepartamentoNameIgnoreCaseContaining(String name);
 }

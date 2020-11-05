@@ -13,14 +13,17 @@ import com.luiz.cardif.service.CargoService;
 public class CargoServiceImpl implements CargoService {
     
     private final CargoRepository repository;
+    private final NextSequenceService nextSequenceService;
     
     @Autowired
-    public CargoServiceImpl(final CargoRepository repository) {
+    public CargoServiceImpl(final CargoRepository repository, final NextSequenceService nextSequenceService) {
         this.repository = repository;
+        this.nextSequenceService = nextSequenceService;
     }
 
     @Override
     public Cargo createOrUpdate(Cargo cargo) {
+        cargo.setCargoId(String.valueOf(nextSequenceService.generateSequence(Cargo.SEQUENCE_NAME)));
         return repository.save(cargo);
     }
 
@@ -30,8 +33,13 @@ public class CargoServiceImpl implements CargoService {
     }
 
     @Override
-    public void delete(String id) {
-        repository.deleteById(id); 
+    public void delete() {
+        repository.deleteAll();
+    }
+
+    @Override
+    public Cargo findByCargoName(String name) {      
+        return repository.findByCargoNameIgnoreCaseContaining(name);
     }
 
 }

@@ -5,5 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.luiz.cardif.entity.Funcionario;
 
 public interface FuncionarioRepository extends MongoRepository<Funcionario, String>{
+    
+    Funcionario findByFuncionarioNameIgnoreCaseContaining(String name);
 
 }

@@ -10,6 +10,8 @@ public interface DepartamentoService {
 
     Optional<Departamento> findById(String id);
 
-    void delete(String id);
+    void delete();
+    
+    Departamento findByDepartamentoName(String name); 
     
 }

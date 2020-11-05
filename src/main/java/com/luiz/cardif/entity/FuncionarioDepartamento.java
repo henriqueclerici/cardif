@@ -1,20 +1,27 @@
 package com.luiz.cardif.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Document
 public class FuncionarioDepartamento {
+    
+    @Transient
+    public static final String SEQUENCE_NAME = "users_sequence";     
 
+    @JsonIgnore
     @Id
     String funcionarioDepartamentoId;
 
     @DBRef(lazy = true)
-    String departamentoId;
+    Departamento departamento;
 
     @DBRef(lazy = true)
-    String funcionarioId;
+    Funcionario funcionario;
 
     public String getFuncionarioDepartamentoId() {
         return funcionarioDepartamentoId;
@@ -24,21 +31,23 @@ public class FuncionarioDepartamento {
         this.funcionarioDepartamentoId = funcionarioDepartamentoId;
     }
 
-    public String getDepartamentoId() {
-        return departamentoId;
+    public Departamento getDepartamento() {
+        return departamento;
     }
 
-    public void setDepartamentoId(String departamentoId) {
-        this.departamentoId = departamentoId;
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 
-    public String getFuncionarioId() {
-        return funcionarioId;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setFuncionarioId(String funcionarioId) {
-        this.funcionarioId = funcionarioId;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
+
+  
     
     
     

@@ -32,10 +32,10 @@ public class CargoController {
     public Cargo createOrUpdate(@RequestBody Cargo cargo) {
         return cargoService.createOrUpdate(cargo);
     }
-    @ApiOperation(value = "Deleta cargo pelo id")
+    @ApiOperation(value = "Deleta todos os cargos")
     @DeleteMapping(value = "/cargo")
-    public void deleteCargo(@PathVariable String id) {
-        cargoService.delete(id);
+    public void deleteCargo() {
+        cargoService.delete();
     }
     @ApiOperation(value = "Busca cargo por id")
     @GetMapping(value = "/cargo/{id}")
